@@ -4,12 +4,79 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<script src="https://kit.fontawesome.com/893f4865a4.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolirack': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
+<header>
+      <nav class="navbar" style="background-color: #333333; color: white;">
+        <div class="container">
+          <div class="navbar-header">
+              <h3>Bookers</h3>
+          </div>
+          <div id="slidemenu">
+            <ul class="nav navbar-nav navbar-right" >
+                <% if user_signed_in? %>
+
+                <li>
+                    <%= link_to user_path(current_user.id) , :style=>"color:gray;" do %>
+                    <i class="fas fa-home"></i> Home
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to users_path  , :style=>"color:gray;" do %>
+                    <i class="fas fa-user"></i> Users
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to books_path , :style=>"color:gray;" do %>
+                    <i class="fas fa-book"></i>  Books
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to destroy_user_session_path, method: :delete  , :style=>"color:gray;" do %>
+                     <i class="fas fa-sign-out-alt"></i> logout
+                    <% end %>
+                  </li>
+
+                <% else %>
+
+                  <li>
+                    <%= link_to root_path, :style=>"color:gray;"  do %>
+                    <i class="fas fa-home"></i> Home
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to home_about_path, :style=>"color:gray;" do %>
+                    <i class="fas fa-link"></i>  About
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to new_user_registration_path  , :style=>"color:gray;" do %>
+                    <i class="fas fa-edit"></i> sign up
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_user_session_path  , :style=>"color:gray;" do %>
+                    <i class="fas fa-sign-out-alt"></i> log in
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+<%= render 'layouts/notifications' %>
     <%= yield %>
   </body>
 </html>

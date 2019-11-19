@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row">
+        <div class="col-sm-6">
+            <h2>User info</h2>
+        <%= form_for(@user) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+            <div class="form-group has-icon">
+                <label class="control-label" for="inputEmail">Name</label>
+                <%= f.text_field :name, id:"inputEmail", placeholder:"Name"%>
+                <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+            </div>
+
+        <div class="form-group has-icon">
+            <label class="control-label" for="inputEmail">Image</label>
+            <%= f.attachment_field :profile_image, placeholder: "Image", class: "user-edit-form" %>
+        </div>
+
+        <div class="form-group has-icon">
+            <label class="control-label" for="inputEmail">Introduction</label>
+            <%= f.text_area :introduction, class: "user-edit-form" %>
+        </div>
+
+            <%= f.submit "Update User", class:"btn " %>
+        <% end %>
+        </div>
+    </div>
+</div>

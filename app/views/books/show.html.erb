@@ -1,0 +1,49 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+			<%= render 'users/info', user: @user %>
+
+			<h1>New book</h1>
+		<%= form_for(@new_book) do |f| %>
+		<%= render 'layouts/error_messages', model: f.object %>
+		    <h4>Title</h4>
+		    <%= f.text_field :title%>
+
+		    <h4>Opinion</h4>
+		    <%= f.text_field :body %>
+		 <div>
+		    <%= f.submit 'Create Book', class: "btn btn-primary btn-block" %>
+		 </div>
+
+		<% end %>
+		</div>
+		<div class="col-sm-9">
+			<h2>Book detail</h2>
+			<table class="table table-borderd-top">
+				<tbody>
+				    <tr>
+						<td>
+	                        <%= attachment_image_tag @book.user, :profile_image, :fill, 40 , 40 , format: 'jpeg', class: "  profile-img", fallback: "no_image.jpg", size:'40x40' %>
+	                        <%= link_to @user.name, user_path(@user) %>
+	                    </td>
+                		<td>
+                			<span><%= @book.title %></span>
+                		</td>
+                		<td>
+                		<span><%= @book.body %></span>
+                		</td>
+                		<% if @user.id == current_user.id %>
+                		<td>
+                			<%= link_to "Edit", edit_book_path(@book) ,class: "btn  btn-success"  %>
+                		</td>
+                		<td>
+                			<%= link_to "Destroy", destroy_book_path(@book), method: :delete, class: "btn  btn-danger	","data-confirm" => "本当に削除しますか？" %>
+                		</td>
+                		<% end %>
+                	</tr>
+                </tbody>
+                	</table>
+
+		</div>
+	</div>
+</div>
